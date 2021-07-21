@@ -8,17 +8,14 @@ const MainMovie = ({mainMovie}) => {
   }
 
   const {poster_path, title, vote_average} = mainMovie;
+  const source = {
+    uri: `https://image.tmdb.org/t/p/original/${poster_path}`,
+  };
 
   return (
     <Box>
       <Stack space={4} align="center">
-        <Image
-          style={styles.image}
-          source={{
-            uri: `https://image.tmdb.org/t/p/original/${poster_path}`,
-          }}
-          resizeMode="stretch"
-        />
+        <Image style={styles.image} source={source} resizeMode="stretch" />
         <Text>{title}</Text>
         <Text>{vote_average}</Text>
       </Stack>

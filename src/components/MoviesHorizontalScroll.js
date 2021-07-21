@@ -8,16 +8,13 @@ const MoviesHorizontalScroll = ({movies}) => {
 
     return moviesForRendering?.map(movie => {
       const {id, poster_path} = movie;
+      const source = {
+        uri: `https://image.tmdb.org/t/p/original/${poster_path}`,
+      };
 
       return (
         <Column key={id}>
-          <Image
-            style={styles.image}
-            source={{
-              uri: `https://image.tmdb.org/t/p/original/${poster_path}`,
-            }}
-            resizeMode="stretch"
-          />
+          <Image style={styles.image} source={source} resizeMode="stretch" />
         </Column>
       );
     });
