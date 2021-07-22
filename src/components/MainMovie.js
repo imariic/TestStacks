@@ -1,11 +1,17 @@
 import React from 'react';
 import {Image, StyleSheet, Text} from 'react-native';
-import {Stack, Box} from '@mobily/stacks';
+import {Stack, useCurrentBreakpoint} from '@mobily/stacks';
 
 const MainMovie = ({mainMovie}) => {
+  const breakpoint = useCurrentBreakpoint();
+
   if (!mainMovie) {
     return null;
   }
+
+  const resolveStyle = (tabletStyle, mobileStyle) => {
+    return breakpoint === 'tablet' ? tabletStyle : mobileStyle;
+  };
 
   const {poster_path, title, vote_average} = mainMovie;
   const source = {
@@ -14,17 +20,41 @@ const MainMovie = ({mainMovie}) => {
 
   return (
     <Stack space={4} align="center" paddingTop={5}>
-      <Image style={styles.image} source={source} resizeMode="stretch" />
-      <Text>{title}</Text>
-      <Text>{vote_average}/10</Text>
+      <Image
+        style={resolveStyle(styles.tabletImage, styles.mobileImage)}
+        source={source}
+        resizeMode="stretch"
+      />
+      <Text style={resolveStyle(styles.tabletTitle, styles.mobileTitle)}>
+        {title}
+      </Text>
+      <Text style={resolveStyle(styles.tabletRating, styles.mobileRating)}>
+        {vote_average}/10
+      </Text>
     </Stack>
   );
 };
 
 const styles = StyleSheet.create({
-  image: {
+  mobileImage: {
     width: 300,
     height: 350,
+  },
+  tabletImage: {
+    width: 500,
+    height: 700,
+  },
+  mobileTitle: {
+    fontSize: 20,
+  },
+  tabletTitle: {
+    fontSize: 40,
+  },
+  mobileRating: {
+    fontSize: 15,
+  },
+  tabletRating: {
+    fontSize: 30,
   },
 });
 
