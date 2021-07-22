@@ -13,20 +13,18 @@ const MainMovie = ({mainMovie}) => {
   };
 
   return (
-    <Box>
-      <Stack space={4} align="center">
-        <Image style={styles.image} source={source} resizeMode="stretch" />
-        <Text>{title}</Text>
-        <Text>{vote_average}</Text>
-      </Stack>
-    </Box>
+    <Stack space={4} align="center" paddingTop={5}>
+      <Image style={styles.image} source={source} resizeMode="stretch" />
+      <Text>{title}</Text>
+      <Text>{vote_average}/10</Text>
+    </Stack>
   );
 };
 
 const styles = StyleSheet.create({
   image: {
-    width: 250,
-    height: 300,
+    width: 300,
+    height: 350,
   },
 });
 

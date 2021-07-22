@@ -1,8 +1,14 @@
 import React from 'react';
 import {ScrollView, StyleSheet, Image} from 'react-native';
-import {Box, Columns, Column} from '@mobily/stacks';
+import {Box, Stack, Column, useCurrentBreakpoint} from '@mobily/stacks';
 
 const MoviesHorizontalScroll = ({movies}) => {
+  const breakpoint = useCurrentBreakpoint();
+
+  const isItemHorizontal = () => {
+    return breakpoint === 'tablet';
+  };
+
   const constructMoviesList = () => {
     const moviesForRendering = movies?.slice(1);
 
@@ -13,17 +19,28 @@ const MoviesHorizontalScroll = ({movies}) => {
       };
 
       return (
-        <Column key={id}>
-          <Image style={styles.image} source={source} resizeMode="stretch" />
-        </Column>
+        <Image
+          key={id}
+          style={styles.image}
+          source={source}
+          resizeMode="stretch"
+        />
       );
     });
   };
 
   return (
     <Box padding={2}>
-      <ScrollView horizontal>
-        <Columns space={2}>{constructMoviesList()}</Columns>
+      <ScrollView
+        horizontal={isItemHorizontal()}
+        showsHorizontalScrollIndicator={false}
+        showsVerticalScrollIndicator={false}>
+        <Stack
+          align={['center', 'stretch']}
+          space={2}
+          horizontal={isItemHorizontal()}>
+          {constructMoviesList()}
+        </Stack>
       </ScrollView>
     </Box>
   );
@@ -31,8 +48,8 @@ const MoviesHorizontalScroll = ({movies}) => {
 
 const styles = StyleSheet.create({
   image: {
-    width: 70,
-    height: 100,
+    width: 200,
+    height: 250,
   },
 });
 

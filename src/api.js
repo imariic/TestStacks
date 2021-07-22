@@ -1,7 +1,5 @@
 import axios from 'axios';
 
-const baseUrl = '';
-
 const axiosInstance = axios.create();
 
 export const getAllMovies = async () => {
