@@ -57,3 +57,9 @@ buck-out/
 
 # CocoaPods
 /ios/Pods/
+
+#ReScript
+*.bs.js
+.bsb.lock
+.merlin
+lib/bs
