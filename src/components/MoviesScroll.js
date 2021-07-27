@@ -1,8 +1,8 @@
 import React from 'react';
 import {ScrollView, StyleSheet, Image} from 'react-native';
-import {Box, Stack, Column, useCurrentBreakpoint} from '@mobily/stacks';
+import {Box, Stack, useCurrentBreakpoint} from '@mobily/stacks';
 
-const MoviesHorizontalScroll = ({movies}) => {
+const MoviesScroll = ({movies}) => {
   const breakpoint = useCurrentBreakpoint();
 
   const isItemHorizontal = () => {
@@ -53,4 +53,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MoviesHorizontalScroll;
+export default MoviesScroll;
