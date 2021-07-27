@@ -1,12 +1,18 @@
 import React from 'react';
-import {ScrollView, StyleSheet, Image} from 'react-native';
+import {ScrollView, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import {Box, Stack, useCurrentBreakpoint} from '@mobily/stacks';
+import {SCREENS} from '../constants';
 
-const MoviesScroll = ({movies}) => {
+const MoviesScroll = ({movies, navigation}) => {
   const breakpoint = useCurrentBreakpoint();
 
   const isItemHorizontal = () => {
     return breakpoint === 'tablet';
+  };
+
+  const onMoviePress = id => {
+    const movie = movies.filter(movie => movie.id === id);
+    return () => navigation.navigate(SCREENS.details, {movie: movie});
   };
 
   const constructMoviesList = () => {
@@ -19,12 +25,9 @@ const MoviesScroll = ({movies}) => {
       };
 
       return (
-        <Image
-          key={id}
-          style={styles.image}
-          source={source}
-          resizeMode="stretch"
-        />
+        <TouchableOpacity key={id} onPress={onMoviePress(id)}>
+          <Image style={styles.image} source={source} resizeMode="stretch" />
+        </TouchableOpacity>
       );
     });
   };

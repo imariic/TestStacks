@@ -4,7 +4,7 @@ import {Stack} from '@mobily/stacks';
 import {getAllMovies} from '../api';
 import {MainMovie, MoviesScroll} from '../components';
 
-const HomeScreen = () => {
+const HomeScreen = ({navigation}) => {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
@@ -15,7 +15,7 @@ const HomeScreen = () => {
     <ScrollView>
       <Stack space={4}>
         <MainMovie mainMovie={movies[0]} />
-        <MoviesScroll movies={movies} />
+        <MoviesScroll navigation={navigation} movies={movies} />
       </Stack>
     </ScrollView>
   );

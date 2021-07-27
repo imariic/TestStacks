@@ -1,7 +1,7 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
-import {HomeScreen} from './screens';
+import {DetailsScreen, HomeScreen} from './screens';
 import {SCREENS} from './constants';
 
 const Stack = createStackNavigator();
@@ -15,6 +15,7 @@ const AppNavigator = () => {
           name={SCREENS.home}
           component={HomeScreen}
         />
+        <Stack.Screen name={SCREENS.details} component={DetailsScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
