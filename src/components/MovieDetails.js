@@ -21,7 +21,7 @@ const MovieDetails = ({movie}) => {
           />
         </Row>
         <Row width="content">
-          <Text>{release_date}</Text>
+          <Text>Release date: {release_date}</Text>
         </Row>
         <Row width="content">
           <Text>Rating: {vote_average}</Text>

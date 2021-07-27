@@ -2,6 +2,7 @@ import React from 'react';
 import {ScrollView, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import {Box, Stack, useCurrentBreakpoint} from '@mobily/stacks';
 import {SCREENS} from '../constants';
+import {generateImageSource} from '../utils';
 
 const MoviesScroll = ({movies, navigation}) => {
   const breakpoint = useCurrentBreakpoint();
@@ -20,13 +21,14 @@ const MoviesScroll = ({movies, navigation}) => {
 
     return moviesForRendering?.map(movie => {
       const {id, poster_path} = movie;
-      const source = {
-        uri: `https://image.tmdb.org/t/p/original/${poster_path}`,
-      };
 
       return (
         <TouchableOpacity key={id} onPress={onMoviePress(id)}>
-          <Image style={styles.image} source={source} resizeMode="stretch" />
+          <Image
+            style={styles.image}
+            source={generateImageSource(poster_path)}
+            resizeMode="stretch"
+          />
         </TouchableOpacity>
       );
     });
